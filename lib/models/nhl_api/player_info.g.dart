@@ -7,7 +7,7 @@ part of 'player_info.dart';
 // **************************************************************************
 
 PlayerInfo _$PlayerInfoFromJson(Map<String, dynamic> json) => PlayerInfo(
-      person: json['person'] as Map<String, dynamic>,
+      person: Person.fromJson(json['person'] as Map<String, dynamic>),
       jerseyNumber: json['jerseyNumber'] as int,
       position: json['position'] as Map<String, dynamic>,
     );
