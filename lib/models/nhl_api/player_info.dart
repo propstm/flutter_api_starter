@@ -8,7 +8,7 @@ part 'player_info.g.dart';
 class PlayerInfo {
   /// The generated code assumes these values exist in JSON.
   final Person person;
-  final int jerseyNumber;
+  final String jerseyNumber;
   final Position position;
 
   PlayerInfo(
