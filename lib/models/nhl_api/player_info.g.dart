@@ -8,7 +8,7 @@ part of 'player_info.dart';
 
 PlayerInfo _$PlayerInfoFromJson(Map<String, dynamic> json) => PlayerInfo(
       person: Person.fromJson(json['person'] as Map<String, dynamic>),
-      jerseyNumber: json['jerseyNumber'] as int,
+      jerseyNumber: json['jerseyNumber'] as String,
       position: Position.fromJson(json['position'] as Map<String, dynamic>),
     );
 
