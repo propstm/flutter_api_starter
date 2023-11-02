@@ -9,7 +9,7 @@ part of 'player_info.dart';
 PlayerInfo _$PlayerInfoFromJson(Map<String, dynamic> json) => PlayerInfo(
       person: Person.fromJson(json['person'] as Map<String, dynamic>),
       jerseyNumber: json['jerseyNumber'] as int,
-      position: json['position'] as Map<String, dynamic>,
+      position: Position.fromJson(json['position'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PlayerInfoToJson(PlayerInfo instance) =>
