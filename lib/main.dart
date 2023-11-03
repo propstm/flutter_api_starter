@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api_starter/models/nhl_api/roster_response.dart';
-import 'package:flutter_api_starter/repository/nhl_repository.dart';
+import 'package:flutter_api_starter/models/sofi_api/product_selection.dart';
+import 'package:flutter_api_starter/presentation/DetailScreen.dart';
+import 'package:flutter_api_starter/repository/sofi_repository.dart';
 
-import 'models/nhl_api/player_info.dart';
+import 'models/sofi_api/main_selection.dart';
 import 'network/api_service.dart';
 
 void main() {
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter API Starter',
+      title: 'SoFI API Test',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Red Wings Roster API Exercise'),
+      home: const MyHomePage(title: 'SoFi API Exercise'),
     );
   }
 }
@@ -36,19 +37,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<PlayerInfo> roster = [];
+  late List<MainSelection> mainSelectionList = [];
   bool ready = false;
 
   @override
   void initState() {
     super.initState();
-    getTeamRoster();
+    getSofiData();
   }
 
-  Future<void> getTeamRoster() async {
+  Future<void> getSofiData() async {
     final api = ApiService();
-    RosterResponse response = await NhlRepository(api: api).getRoster();
-    roster = response.roster;
+    ProductSelection response = await SofiRepository(api: api).getData();
+    mainSelectionList = response.mainSelections;
     setState(() {
       ready = true;
     });
@@ -58,18 +59,24 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Red Wings Roster',
+        title: const Text('SoFi Interview 2',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.lightBlueAccent,
       ),
       body: ListView.builder(
-          itemCount: roster.length ?? 0,
+          itemCount: mainSelectionList.length ?? 0,
           itemBuilder: (BuildContext context, int index) {
-            final playerObject = roster[index];
+            final selectionObject = mainSelectionList[index];
             return ListTile(
               leading: null,
               trailing: const Icon(Icons.arrow_right_sharp),
-              title: Text(playerObject.person.fullName),
+              title: Text(selectionObject.title),
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DetailScreen(mainSelection: selectionObject),
+                  )),
             );
           }),
     );
