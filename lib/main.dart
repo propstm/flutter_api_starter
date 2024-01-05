@@ -48,7 +48,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getTeamRoster() async {
     final api = ApiService();
     RosterResponse response = await NhlRepository(api: api).getRoster();
-    roster = response.roster;
+    //roster = response.forwards;
+
+    roster = [
+      ...response.forwards,
+      ...response.defensemen,
+      ...response.goalies
+    ];
     setState(() {
       ready = true;
     });
@@ -67,9 +73,21 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (BuildContext context, int index) {
             final playerObject = roster[index];
             return ListTile(
-              leading: null,
-              trailing: const Icon(Icons.arrow_right_sharp),
-              title: Text(playerObject.person.fullName),
+              leading: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.network(playerObject.headshot),
+              ), // No matter how big it is, it won't overflow
+              trailing: Icon(Icons.arrow_right_sharp),
+              title: Row(
+                children: <Widget>[
+                  Text(
+                    '${playerObject.firstName.name} ${playerObject.lastName.name}',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Spacer(), // use Spacer
+                  Text('#${playerObject.sweaterNumber}'),
+                ],
+              ),
             );
           }),
     );

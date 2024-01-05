@@ -7,14 +7,28 @@ part of 'player_info.dart';
 // **************************************************************************
 
 PlayerInfo _$PlayerInfoFromJson(Map<String, dynamic> json) => PlayerInfo(
-      person: Person.fromJson(json['person'] as Map<String, dynamic>),
-      jerseyNumber: json['jerseyNumber'] as String,
-      position: Position.fromJson(json['position'] as Map<String, dynamic>),
+      id: json['id'] as int,
+      headshot: json['headshot'] as String,
+      shootsCatches: json['shootsCatches'] as String,
+      firstName: FirstName.fromJson(json['firstName'] as Map<String, dynamic>),
+      lastName: LastName.fromJson(json['lastName'] as Map<String, dynamic>),
+      heightInInches: json['heightInInches'] as int,
+      weightInPounds: json['weightInPounds'] as int,
+      birthDate: json['birthDate'] as String,
+      sweaterNumber: json['sweaterNumber'] as int,
+      positionCode: json['positionCode'] as String,
     );
 
 Map<String, dynamic> _$PlayerInfoToJson(PlayerInfo instance) =>
     <String, dynamic>{
-      'person': instance.person,
-      'jerseyNumber': instance.jerseyNumber,
-      'position': instance.position,
+      'id': instance.id,
+      'headshot': instance.headshot,
+      'shootsCatches': instance.shootsCatches,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
+      'heightInInches': instance.heightInInches,
+      'weightInPounds': instance.weightInPounds,
+      'birthDate': instance.birthDate,
+      'sweaterNumber': instance.sweaterNumber,
+      'positionCode': instance.positionCode,
     };

@@ -1,20 +1,51 @@
-import 'package:flutter_api_starter/models/nhl_api/person.dart';
-import 'package:flutter_api_starter/models/nhl_api/position.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import 'first_name.dart';
+import 'last_name.dart';
+
 part 'player_info.g.dart';
+
+// {
+// "firstName": {
+// "default": "Zach"
+// },
+// "lastName": {
+// "default": "Aston-Reese"
+// },
+// "birthCity": {
+// "default": "Staten Island"
+// },
+// "birthCountry": "USA",
+// "birthStateProvince": {
+// "default": "New York"
+// }
+// },
 
 @JsonSerializable()
 class PlayerInfo {
   /// The generated code assumes these values exist in JSON.
-  final Person person;
-  final String jerseyNumber;
-  final Position position;
+  final int id;
+  final String headshot;
+  final String shootsCatches;
+  final FirstName firstName;
+  final LastName lastName;
+  final int heightInInches;
+  final int weightInPounds;
+  final String birthDate;
+  final int sweaterNumber;
+  final String positionCode;
 
   PlayerInfo(
-      {required this.person,
-      required this.jerseyNumber,
-      required this.position});
+      {required this.id,
+      required this.headshot,
+      required this.shootsCatches,
+      required this.firstName,
+      required this.lastName,
+      required this.heightInInches,
+      required this.weightInPounds,
+      required this.birthDate,
+      required this.sweaterNumber,
+      required this.positionCode});
 
   factory PlayerInfo.fromJson(Map<String, dynamic> json) =>
       _$PlayerInfoFromJson(json);

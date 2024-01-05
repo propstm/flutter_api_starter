@@ -6,9 +6,14 @@ part 'roster_response.g.dart';
 @JsonSerializable()
 class RosterResponse {
   /// The generated code assumes these values exist in JSON.
-  final List<PlayerInfo> roster;
+  final List<PlayerInfo> forwards;
+  final List<PlayerInfo> defensemen;
+  final List<PlayerInfo> goalies;
 
-  RosterResponse({required this.roster});
+  RosterResponse(
+      {required this.forwards,
+      required this.defensemen,
+      required this.goalies});
 
   factory RosterResponse.fromJson(Map<String, dynamic> json) =>
       _$RosterResponseFromJson(json);

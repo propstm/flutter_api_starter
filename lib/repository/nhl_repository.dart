@@ -7,7 +7,7 @@ class NhlRepository {
   ApiService api;
 
   Future<RosterResponse> getRoster() async {
-    String url = '${api.baseAPI}/teams/17/roster';
+    String url = '${api.baseAPI}/roster/DET/20232024';
     print('URL: $url');
     final response = await api.get(url);
     final stronglyTypedResponse =

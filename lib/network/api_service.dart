@@ -16,7 +16,7 @@ class ApiService {
 
   static ApiService? _instance;
 
-  final String baseAPI = 'https://statsapi.web.nhl.com/api/v1';
+  final String baseAPI = 'https://api-web.nhle.com/v1';
 
   //Red Wings Roster
   //https://statsapi.web.nhl.com/api/v1/teams/17/roster
