@@ -8,12 +8,20 @@ part of 'roster_response.dart';
 
 RosterResponse _$RosterResponseFromJson(Map<String, dynamic> json) =>
     RosterResponse(
-      roster: (json['roster'] as List<dynamic>)
+      forwards: (json['forwards'] as List<dynamic>)
+          .map((e) => PlayerInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      defensemen: (json['defensemen'] as List<dynamic>)
+          .map((e) => PlayerInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      goalies: (json['goalies'] as List<dynamic>)
           .map((e) => PlayerInfo.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$RosterResponseToJson(RosterResponse instance) =>
     <String, dynamic>{
-      'roster': instance.roster,
+      'forwards': instance.forwards,
+      'defensemen': instance.defensemen,
+      'goalies': instance.goalies,
     };
